@@ -1,6 +1,6 @@
 import csv
 import subprocess
-with open('File.csv', newline='') as csvfile:
+with open('../File.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=";")
     result = []
     for row in reader:

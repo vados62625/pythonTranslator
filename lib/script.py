@@ -1,4 +1,4 @@
-from translate import Translator
+from googletrans import Translator
 from sys import argv
 if len(argv) == 3:
     script, language, textToTranslate = argv

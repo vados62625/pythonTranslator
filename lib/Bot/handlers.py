@@ -1,6 +1,8 @@
 from aiogram import types
-from translate import Translator
+from googletrans import Translator
+from datetime import datetime
 
+translator = Translator()
 
 async def start(message: types.Message):
     
@@ -8,9 +10,9 @@ async def start(message: types.Message):
 
 
 async def echo(message: types.Message):
-    
-    with open("chathistory.txt", "a") as file:
-        file.write('\n' + message.from_user.username + ' написал: ' + message.text)
-    translator = Translator(from_lang='russian', to_lang='english')
+
+    #translator = Translator(from_lang='russian', to_lang='english')    
     translation = translator.translate(message.text)
-    await message.answer(translation)
+    await message.answer(translation.text)
+    with open("chathistory.txt", "a") as file:
+        file.write('\n' + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + '\t' + message.from_user.username + ' написал: ' + message.text + '\tБот ответил: ' + translation.text)

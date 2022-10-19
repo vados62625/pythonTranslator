@@ -102,6 +102,9 @@ def translate(text, src=None, dest=None):
 
     if src == None:
         src = translator.detect(text).lang
+        if isinstance(src, str):
+            langSrc = f'{languages[src]} (определено автоматически)'
+    else: langSrc = f'{languages[src]}'
     
     if dest == None:
         dest = 'en'    
@@ -111,8 +114,7 @@ def translate(text, src=None, dest=None):
             langSrc = f'{languages[lang]} (определено автоматически)'
             translation += f'Перевод: {translator.translate(text, src=lang, dest=dest).text}\nИсходный язык: {langSrc}\nЯзык перевода: {languages[dest]}\n\n'
     else:
-        langSrc = f'{languages[src]}'
-        translation = f'Перевод: {translator.translate(text, src=src, dest=dest).text}\nИсходный язык: {languages[src]}\nЯзык перевода: {languages[dest]}\n\n'
+        translation = f'Перевод: {translator.translate(text, src=src, dest=dest).text}\nИсходный язык: {langSrc}\nЯзык перевода: {languages[dest]}\n\n'
     return translation
 
 

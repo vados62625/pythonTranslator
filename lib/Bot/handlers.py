@@ -2,7 +2,6 @@ from aiogram import types
 import googletrans
 from googletrans import Translator
 from datetime import datetime
-import collections.abc
 import json
 
 translator = Translator()
